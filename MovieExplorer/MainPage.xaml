@@ -9,18 +9,32 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <StackPanel Background="Honeydew" >
-        <Button Content="Get Movie" Click="Button_Click" />
-        <TextBlock Name="ResultTextBlock" />
+        
+        <Button Content="Get Movie" Click="Button_Click" Background="Azure" />
+        <TextBlock Name="ResultTextBlock"  />
         <Image Name="ResultImage" Width="200" Height="200" />
+        
+        <Button x:Name="Search" 
+                Content="Search Movie" 
+                Click="Search_Click" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                Width="180" 
+                Height="88" 
+                />
         <TextBlock Name="PosterURLTextBlock" />
-        <Button Name="Search" Content="Search Movie" Click="Search_Click" />
-        <TextBlock Name="SearchResultTB" />
+        <TextBlock Name="SearchResultTB" Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" >
+            <TextBlock.FocusVisualPrimaryBrush>
+                <SolidColorBrush Color="{ThemeResource SystemAltHighColor}"/>
+            </TextBlock.FocusVisualPrimaryBrush>
+        </TextBlock>
         <TextBox 
             Name="Title" 
             HorizontalAlignment="Center" 
-            Text="TextBox" 
             VerticalAlignment="Top"
+            PlaceholderText="Search Title Here"
             />
+
         <Button Name="SearchButton" 
                     RelativePanel.AlignRightWithPanel="True"
                     FontFamily="Segoe MDL2 Assets"
@@ -34,6 +48,8 @@
                      FontSize="24"
                      PlaceholderText="Search" />
 
+        <Button Name="TestSearchButton" Content="TestSearch" Click="TestSearchButton_Click" />
+
     </StackPanel>
-    
+
 </Page>

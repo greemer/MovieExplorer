@@ -48,10 +48,12 @@ namespace MovieExplorer
             ///OmdbSearch.SearchRootObject myMovie = await OmdbSearch.SearchMovie(50.1, 20.2);
             OmdbSearch.SearchRootObject myMovie = await OmdbSearch.SearchMovie(SearchTarget);
 
+            
+
             ///string icon = String.Format("ms-appx:///Assets/Weather/{0}.png", myWeather.weather[0].icon);
             ///ResultImage.Source = new BitmapImage(new Uri(icon, UriKind.Absolute));
 
-            SearchResultTB.Text = "Response: " + myMovie.Response + " " + myMovie.totalResults;
+            SearchResultTB.Text = "Response: " + myMovie.Response + " " + myMovie.totalResults + " " + myMovie.Search[0].Title;
             ///SearchResultTB.Text = string(myMovie);
             ///var myPoster = myMovie.Poster;
             ///PosterURLTextBlock.Text = myPoster;
@@ -60,6 +62,12 @@ namespace MovieExplorer
 
         }
 
+        private async void TestSearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            ///OmdbSearch.SearchRootObject myTitle = await OmdbSearch.SearchTitle("terminator");
+            ///SearchResultTB.Text = "The Title " + myTitle.Search[0].Title;
+
+        }
     }
 
 }

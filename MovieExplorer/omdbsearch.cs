@@ -23,10 +23,47 @@ namespace MovieExplorer
 
             var data  = (SearchRootObject)serializer.ReadObject(ms);
 
-            ///ms.Position = 0;
-            ///SearchRootObject first = (SearchRootObject)serializer.ReadObject(ms);
             return data;
         }
+
+
+        public async static Task<Search> SearchTitle(string search)
+        {
+            var http = new HttpClient();
+
+            var url = String.Format("http://www.omdbapi.com/?apikey=ff21610b&s={0}", search);
+            var response = await http.GetAsync(url);
+            var result = await response.Content.ReadAsStringAsync();
+            var serializer = new System.Runtime.Serialization.Json.DataContractJsonSerializer(typeof(Search));
+
+            var ms = new System.IO.MemoryStream(Encoding.UTF8.GetBytes(result));
+
+            ///var data = (Search)serializer.ReadObject(ms);
+
+            ///ms.Position = 1;
+            var data = (Search)serializer.ReadObject(ms);
+
+            return data;
+        }
+
+        //public async static Task<Search> SearchTitle(string search)
+        //{
+        //    var http = new HttpClient();
+
+        //    var url = String.Format("http://www.omdbapi.com/?apikey=ff21610b&s={0}", search);
+        //    var response = await http.GetAsync(url);
+        //    var result = await response.Content.ReadAsStringAsync();
+        //    var serializer = new System.Runtime.Serialization.Json.DataContractJsonSerializer(typeof(SearchRootObject));
+
+        //    var ms = new System.IO.MemoryStream(Encoding.UTF8.GetBytes(result));
+
+        //    ///var data = (Search)serializer.ReadObject(ms);
+
+        //    ///ms.Position = 1;
+        //    var data = (SearchRootObject)serializer.ReadObject(ms);
+
+        //    return data;
+        //}
 
         [DataContract]
         public class Search
