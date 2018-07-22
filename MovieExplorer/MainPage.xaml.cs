@@ -45,29 +45,27 @@ namespace MovieExplorer
 
             var SearchTarget = Title.Text;
 
-            ///OmdbSearch.SearchRootObject myMovie = await OmdbSearch.SearchMovie(50.1, 20.2);
+            
             OmdbSearch.SearchRootObject myMovie = await OmdbSearch.SearchMovie(SearchTarget);
 
-            
+            if (myMovie.Response == "True")
+            {
+                int entries = myMovie.Search.Count;
 
-            ///string icon = String.Format("ms-appx:///Assets/Weather/{0}.png", myWeather.weather[0].icon);
-            ///ResultImage.Source = new BitmapImage(new Uri(icon, UriKind.Absolute));
-
-            SearchResultTB.Text = "Response: " + myMovie.Response + " " + myMovie.totalResults + " " + myMovie.Search[0].Title;
-            ///SearchResultTB.Text = string(myMovie);
-            ///var myPoster = myMovie.Poster;
-            ///PosterURLTextBlock.Text = myPoster;
-            //SearchResultTB.Text = "Hello";
+                if (myMovie.Search[0].Poster != "N/A")
+                    Result2Image.Source = new BitmapImage(new Uri(myMovie.Search[0].Poster, UriKind.Absolute));
 
 
+                SearchResultTB.Text = "Response: "
+                    + myMovie.Response
+                    + " " + myMovie.totalResults
+                    + " " + myMovie.Search[0].Title
+                    + " " + entries.ToString();
+            }
+            else
+                SearchResultTB.Text = "Sorry, no movies by that name found!";
         }
 
-        private async void TestSearchButton_Click(object sender, RoutedEventArgs e)
-        {
-            ///OmdbSearch.SearchRootObject myTitle = await OmdbSearch.SearchTitle("terminator");
-            ///SearchResultTB.Text = "The Title " + myTitle.Search[0].Title;
-
-        }
     }
 
 }

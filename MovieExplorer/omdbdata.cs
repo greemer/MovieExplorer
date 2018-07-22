@@ -12,7 +12,8 @@ namespace MovieExplorer
         public async static Task<RootObject> GetMovie(double lat, double lon)
         {
             var http = new HttpClient();
-            var url = String.Format("http://www.omdbapi.com/?apikey=ff21610b&t=social+network", lat, lon);
+            ///var url = String.Format("http://www.omdbapi.com/?apikey=ff21610b&t=social+network", lat, lon);
+            var url = String.Format("http://www.omdbapi.com/?apikey=ff21610b&t={0}", "social network");
             var response = await http.GetAsync(url);
             var result = await response.Content.ReadAsStringAsync();
             var serializer = new System.Runtime.Serialization.Json.DataContractJsonSerializer(typeof(RootObject));

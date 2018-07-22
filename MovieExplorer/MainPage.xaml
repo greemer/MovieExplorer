@@ -13,7 +13,8 @@
         <Button Content="Get Movie" Click="Button_Click" Background="Azure" />
         <TextBlock Name="ResultTextBlock"  />
         <Image Name="ResultImage" Width="200" Height="200" />
-        
+
+        <!--keep -->
         <Button x:Name="Search" 
                 Content="Search Movie" 
                 Click="Search_Click" 
@@ -22,33 +23,33 @@
                 Width="180" 
                 Height="88" 
                 />
+        
         <TextBlock Name="PosterURLTextBlock" />
-        <TextBlock Name="SearchResultTB" Foreground="{ThemeResource SystemControlForegroundBaseMediumBrush}" >
-            <TextBlock.FocusVisualPrimaryBrush>
-                <SolidColorBrush Color="{ThemeResource SystemAltHighColor}"/>
-            </TextBlock.FocusVisualPrimaryBrush>
-        </TextBlock>
+
+        <TextBlock Name="SearchResultTB" />
+    
+        <!-- keep -->
         <TextBox 
             Name="Title" 
             HorizontalAlignment="Center" 
             VerticalAlignment="Top"
             PlaceholderText="Search Title Here"
             />
+        <Image Name="Result2Image" Width="200" Height="200" />
 
-        <Button Name="SearchButton" 
+        <!--<Button Name="SearchButton" 
                     RelativePanel.AlignRightWithPanel="True"
                     FontFamily="Segoe MDL2 Assets"
                     FontSize="36" 
-                    Content="&#xE1A3;" />
-
-        <TextBox Name="SearchTextBox" 
+                    Content="&#xE1A3;" />-->
+        <!-- keep -->
+        <!--<TextBox Name="SearchTextBox" 
                      RelativePanel.LeftOf="SearchButton" 
                      Height="48" 
                      Width="200"
                      FontSize="24"
-                     PlaceholderText="Search" />
+                     PlaceholderText="Search" />-->
 
-        <Button Name="TestSearchButton" Content="TestSearch" Click="TestSearchButton_Click" />
 
     </StackPanel>
 
