@@ -44,23 +44,45 @@ namespace MovieExplorer
         {
 
             var SearchTarget = Title.Text;
-
+            int page = 1;
             
-            OmdbSearch.SearchRootObject myMovie = await OmdbSearch.SearchMovie(SearchTarget);
+            OmdbSearch.SearchRootObject myMovie = await OmdbSearch.SearchMovie(SearchTarget, page);
 
             if (myMovie.Response == "True")
             {
                 int entries = myMovie.Search.Count;
-
-                if (myMovie.Search[0].Poster != "N/A")
-                    Result2Image.Source = new BitmapImage(new Uri(myMovie.Search[0].Poster, UriKind.Absolute));
-
+                int totalEntries = int.Parse(myMovie.totalResults);
 
                 SearchResultTB.Text = "Response: "
                     + myMovie.Response
                     + " " + myMovie.totalResults
-                    + " " + myMovie.Search[0].Title
-                    + " " + entries.ToString();
+                    + " " + myMovie.Search.Count.ToString()
+                    + "\r\n";
+
+                while (totalEntries > 10)
+                {
+                    totalEntries -= 10;
+
+                    OmdbSearch.SearchRootObject myMovie2 = await OmdbSearch.SearchMovie(SearchTarget, page);
+
+                    for (int i = 0; i < 10; i++)
+                    {
+                        SearchResultTB.Text += myMovie2.Search[i].Title + "\r\n";
+                    }
+                    page++;
+                }
+                if (totalEntries != 0)
+                {
+                    OmdbSearch.SearchRootObject myMovie2 = await OmdbSearch.SearchMovie(SearchTarget, page);
+                    for (int i = 0; i < totalEntries; i++)
+                    {
+                        SearchResultTB.Text += myMovie2.Search[i].Title + "\r\n";
+                    }
+                }
+
+                //if (myMovie.Search[0].Poster != "N/A")
+                //    Result2Image.Source = new BitmapImage(new Uri(myMovie.Search[0].Poster, UriKind.Absolute));
+
             }
             else
                 SearchResultTB.Text = "Sorry, no movies by that name found!";

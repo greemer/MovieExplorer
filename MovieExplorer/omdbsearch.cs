@@ -10,13 +10,16 @@ namespace MovieExplorer
 {
     class OmdbSearch
     {
-        public async static Task<SearchRootObject> SearchMovie(string search)
+        public async static Task<SearchRootObject> SearchMovie(string search, int page)
         {
             var http = new HttpClient();
 
-            var url = String.Format("http://www.omdbapi.com/?apikey=ff21610b&s={0}", search);
+            var url = String.Format("http://www.omdbapi.com/?apikey=ff21610b&s={0}&page={1}", search, page );
+
+            /// probably need some time out checks here
             var response = await http.GetAsync(url);
             var result = await response.Content.ReadAsStringAsync();
+
             var serializer = new System.Runtime.Serialization.Json.DataContractJsonSerializer(typeof(SearchRootObject));
 
             var ms = new System.IO.MemoryStream(Encoding.UTF8.GetBytes(result));
@@ -32,8 +35,11 @@ namespace MovieExplorer
             var http = new HttpClient();
 
             var url = String.Format("http://www.omdbapi.com/?apikey=ff21610b&s={0}", search);
+
+            /// time out checks would be good here
             var response = await http.GetAsync(url);
             var result = await response.Content.ReadAsStringAsync();
+
             var serializer = new System.Runtime.Serialization.Json.DataContractJsonSerializer(typeof(Search));
 
             var ms = new System.IO.MemoryStream(Encoding.UTF8.GetBytes(result));

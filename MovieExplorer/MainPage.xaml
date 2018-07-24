@@ -8,35 +8,76 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <StackPanel Background="Honeydew" >
-        
-        <Button Content="Get Movie" Click="Button_Click" Background="Azure" />
-        <TextBlock Name="ResultTextBlock"  />
-        <Image Name="ResultImage" Width="200" Height="200" />
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="1*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <Button Content="Get Movie" 
+                Click="Button_Click" 
+                Background="Azure" RenderTransformOrigin="0.663,0.75" HorizontalAlignment="Center" VerticalAlignment="Center"
+                />
+        <TextBlock Name="ResultTextBlock"  
+                   Grid.Row="1" 
+                   Grid.Column="0"
+                   VerticalAlignment="Top"
+                   />
+        <Image Name="ResultImage" 
+               Width="200" 
+               Height="200"
+               Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"
+               />
 
         <!--keep -->
         <Button x:Name="Search" 
                 Content="Search Movie" 
                 Click="Search_Click" 
                 HorizontalAlignment="Center" 
-                VerticalAlignment="Center" 
+                VerticalAlignment="Top" 
                 Width="180" 
                 Height="88" 
+                Grid.Column="2"
+                Grid.Row="1" Margin="0,70,0,0"
                 />
-        
-        <TextBlock Name="PosterURLTextBlock" />
 
-        <TextBlock Name="SearchResultTB" />
-    
+        <TextBlock Name="PosterURLTextBlock" 
+                   Grid.Column="0"
+                   Grid.Row="1"
+                   TextWrapping="Wrap"
+                   VerticalAlignment="Center"
+                   />
+
+        <TextBlock Name="SearchResultTB" 
+                   Grid.Column="1"
+                   Grid.Row="0"
+                   VerticalAlignment="Top"
+                   Grid.RowSpan="3"
+                   Margin="0,20,0,0"
+                   />
+
         <!-- keep -->
         <TextBox 
             Name="Title" 
             HorizontalAlignment="Center" 
-            VerticalAlignment="Top"
+            VerticalAlignment="Center"
             PlaceholderText="Search Title Here"
+            Grid.Column="2"
             />
-        <Image Name="Result2Image" Width="200" Height="200" />
 
+        <Image Name="Result2Image" Width="200" Height="200" 
+               Grid.Column="2"
+               Grid.Row="2" RenderTransformOrigin="0.515,0.5" HorizontalAlignment="Center" VerticalAlignment="Center"
+               />
+
+        
         <!--<Button Name="SearchButton" 
                     RelativePanel.AlignRightWithPanel="True"
                     FontFamily="Segoe MDL2 Assets"
@@ -50,7 +91,7 @@
                      FontSize="24"
                      PlaceholderText="Search" />-->
 
+    </Grid>
 
-    </StackPanel>
 
 </Page>
